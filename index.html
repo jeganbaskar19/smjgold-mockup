@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shiva Mahajothi Jewellers | சிவ மஹாஜோதி ஜுவெல்லர்ஸ் - Redesign Mockup</title>
+  <title>Shiva Mahajothi Jewellers | சிவ மஹாஜோதி ஜுவெல்லர்ஸ் - Luxury Website Redesign</title>
 
-  <!-- Tailwind CSS -->
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Tailwind Config -->
+  <!-- Tailwind Custom Config -->
   <script>
     tailwind.config = {
       theme: {
@@ -19,6 +19,7 @@
               900: '#0a1633',
               800: '#0f214a',
               700: '#17306b',
+              600: '#20428f',
             },
             gold: {
               100: '#fef8e7',
@@ -28,16 +29,18 @@
               500: '#d4af37',
               600: '#b89228',
               700: '#94721d',
+              800: '#755819',
             },
             cream: {
               50: '#fffdfa',
               100: '#fdfbf7',
               200: '#f7f3ea',
+              300: '#ede6d5',
             }
           },
           fontFamily: {
-            serif: ['Cinzel', 'Playfair Display', 'serif'],
-            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            serif: ['Cinzel', 'Playfair Display', 'Georgia', 'serif'],
+            sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
             tamil: ['Noto Sans Tamil', 'sans-serif'],
           }
         }
@@ -48,7 +51,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Noto+Sans+Tamil:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Noto+Sans+Tamil:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -67,79 +70,126 @@
       background: linear-gradient(135deg, #f5ce5d 0%, #d4af37 50%, #94721d 100%);
     }
 
+    .bg-navy-gradient {
+      background: linear-gradient(180deg, #050c1e 0%, #0a1633 50%, #0f214a 100%);
+    }
+
     @keyframes softPulse {
       0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(34, 197, 94, 0.4); }
-      50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(34, 197, 94, 0.7); }
+      50% { transform: scale(1.05); box-shadow: 0 0 35px rgba(34, 197, 94, 0.7); }
     }
     .animate-whatsapp { animation: softPulse 2.5s infinite ease-in-out; }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #050c1e; }
+    ::-webkit-scrollbar-thumb { background: #b89228; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #f5ce5d; }
   </style>
 </head>
 <body class="bg-cream-100 text-slate-800 font-sans antialiased overflow-x-hidden selection:bg-gold-500 selection:text-navy-950">
 
-  <!-- 1. STICKY HEADER -->
-  <header id="main-header" class="sticky top-0 z-50 bg-navy-950 border-b border-gold-500/30 py-3 shadow-xl transition-all">
+  <!-- 1. HEADER / NAVIGATION -->
+  <header id="main-header" class="sticky top-0 z-50 bg-navy-950 border-b border-gold-500/30 py-3 shadow-2xl transition-all">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
       
       <!-- Brand Logo & Name -->
       <div onclick="window.scrollTo({top:0, behavior:'smooth'})" class="flex items-center space-x-3 cursor-pointer group">
-        <div className="relative w-11 h-11 rounded-full bg-gold-gradient p-[2px] shadow-lg group-hover:scale-105 transition-transform">
-          <div class="w-11 h-11 bg-navy-950 rounded-full flex items-center justify-center border border-gold-400">
-            <span class="text-gold-400 font-serif font-black text-base tracking-tighter">SMJ</span>
+        <div class="w-12 h-12 rounded-full bg-gold-gradient p-[2px] shadow-lg group-hover:scale-105 transition-transform flex-shrink-0">
+          <div class="w-full h-full bg-navy-950 rounded-full flex items-center justify-center border border-gold-400">
+            <span class="text-gold-400 font-serif font-black text-lg tracking-tighter">SMJ</span>
           </div>
         </div>
         <div class="flex flex-col">
           <span class="font-serif text-lg sm:text-xl font-bold tracking-wide text-gold-metallic">Shiva Mahajothi Jewellers</span>
-          <span class="font-tamil text-xs text-gold-300 font-medium">சிவ மஹாஜோதி ஜுவெல்லர்ஸ்</span>
+          <span class="font-tamil text-xs text-gold-300 font-medium tracking-tight">சிவ மஹாஜோதி ஜுவெல்லர்ஸ்</span>
         </div>
       </div>
 
-      <!-- Desktop Nav -->
+      <!-- Desktop Navigation Links -->
       <nav class="hidden lg:flex items-center space-x-7 text-sm font-medium text-cream-100">
         <a href="#hero" class="hover:text-gold-400 transition-colors">Home</a>
         <a href="#about" class="hover:text-gold-400 transition-colors">About</a>
-        <a href="#collections" class="hover:text-gold-400 transition-colors">Collections</a>
+        
+        <!-- Gallery Mega Dropdown -->
+        <div class="relative group">
+          <a href="#gallery" class="flex items-center space-x-1 hover:text-gold-400 py-2 transition-colors">
+            <span>Gallery</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-gold-400"></i>
+          </a>
+          <div class="absolute top-full left-1/2 -translate-x-1/2 w-64 bg-navy-900 border border-gold-500/40 rounded-2xl shadow-2xl p-3 hidden group-hover:block animate-in fade-in slide-in-from-top-2">
+            <div class="text-[11px] font-bold text-gold-400 uppercase tracking-wider px-3 py-1 border-b border-gold-500/20 mb-1">
+              8 Preserved Categories
+            </div>
+            <a href="#gallery" onclick="filterGallery('Hollow Rope')" class="flex items-center justify-between px-3 py-1.5 text-xs text-cream-100 hover:text-gold-300 hover:bg-navy-800 rounded-lg">
+              <span>Hollow Rope</span> <span class="font-tamil text-[10px] text-gold-400">ஹாலோ ரோப்</span>
+            </a>
+            <a href="#gallery" onclick="filterGallery('Dollars & Pendants')" class="flex items-center justify-between px-3 py-1.5 text-xs text-cream-100 hover:text-gold-300 hover:bg-navy-800 rounded-lg">
+              <span>Dollars & Pendants</span> <span class="font-tamil text-[10px] text-gold-400">டாலர்ஸ்</span>
+            </a>
+            <a href="#gallery" onclick="filterGallery('Necklace')" class="flex items-center justify-between px-3 py-1.5 text-xs text-cream-100 hover:text-gold-300 hover:bg-navy-800 rounded-lg">
+              <span>Necklace</span> <span class="font-tamil text-[10px] text-gold-400">நெக்லஸ்</span>
+            </a>
+            <a href="#gallery" onclick="filterGallery('Chains')" class="flex items-center justify-between px-3 py-1.5 text-xs text-cream-100 hover:text-gold-300 hover:bg-navy-800 rounded-lg">
+              <span>Chains</span> <span class="font-tamil text-[10px] text-gold-400">சங்கிலிகள்</span>
+            </a>
+            <a href="#gallery" onclick="filterGallery('Rings')" class="flex items-center justify-between px-3 py-1.5 text-xs text-cream-100 hover:text-gold-300 hover:bg-navy-800 rounded-lg">
+              <span>Rings</span> <span class="font-tamil text-[10px] text-gold-400">மோதிரங்கள்</span>
+            </a>
+            <a href="#gallery" onclick="filterGallery('Bangles')" class="flex items-center justify-between px-3 py-1.5 text-xs text-cream-100 hover:text-gold-300 hover:bg-navy-800 rounded-lg">
+              <span>Bangles</span> <span class="font-tamil text-[10px] text-gold-400">வளையல்கள்</span>
+            </a>
+            <a href="#gallery" onclick="filterGallery('Chokers')" class="flex items-center justify-between px-3 py-1.5 text-xs text-cream-100 hover:text-gold-300 hover:bg-navy-800 rounded-lg">
+              <span>Chokers</span> <span class="font-tamil text-[10px] text-gold-400">சோக்கர்</span>
+            </a>
+            <a href="#gallery" onclick="filterGallery('Earrings')" class="flex items-center justify-between px-3 py-1.5 text-xs text-cream-100 hover:text-gold-300 hover:bg-navy-800 rounded-lg">
+              <span>Earrings</span> <span class="font-tamil text-[10px] text-gold-400">ஜிமிக்கி</span>
+            </a>
+          </div>
+        </div>
+
         <a href="#gold-scheme" class="hover:text-gold-400 transition-colors flex items-center space-x-1">
           <span class="w-2 h-2 rounded-full bg-gold-400 animate-pulse"></span>
           <span>Gold Scheme</span>
         </a>
-        <a href="#gallery" class="hover:text-gold-400 transition-colors">Gallery</a>
         <a href="#contact" class="hover:text-gold-400 transition-colors">Contact</a>
       </nav>
 
-      <!-- Admin Upload Button & Custom Request CTA -->
+      <!-- Desktop Header CTAs -->
       <div class="hidden lg:flex items-center space-x-3">
-        <!-- Admin Jewellery Upload Feature Toggle Button -->
-        <button onclick="openAdminModal()" class="px-3.5 py-2 text-xs font-bold uppercase tracking-wider text-gold-300 border border-gold-500/50 hover:bg-gold-500/10 rounded-full flex items-center space-x-1.5 transition-all">
+        <!-- Admin Upload Tool -->
+        <button onclick="openAdminModal()" class="px-3.5 py-2 text-xs font-bold uppercase tracking-wider text-gold-300 border border-gold-500/50 hover:bg-gold-500/10 rounded-full flex items-center space-x-1.5 transition-all" title="Admin Portal to add new items live">
           <i data-lucide="plus-circle" class="w-4 h-4 text-gold-400"></i>
-          <span>Admin Add Jewellery</span>
+          <span>Admin Upload</span>
         </button>
-        
+
         <button onclick="openCustomModal()" class="px-4 py-2 text-xs font-bold uppercase tracking-wider text-navy-950 bg-gold-gradient hover:brightness-110 rounded-full shadow-lg transition-all">
           Custom Order
         </button>
       </div>
 
-      <!-- Mobile Hamburger -->
+      <!-- Mobile Hamburger Button -->
       <button onclick="toggleMobileMenu()" class="lg:hidden text-gold-400 p-2 focus:outline-none">
         <i data-lucide="menu" class="w-6 h-6"></i>
       </button>
 
     </div>
 
-    <!-- Mobile Drawer -->
+    <!-- Mobile Navigation Drawer -->
     <div id="mobile-menu" class="hidden lg:hidden bg-navy-900 border-b border-gold-500/30 px-4 py-4 space-y-3">
       <a href="#hero" onclick="toggleMobileMenu()" class="block text-sm text-cream-100 hover:text-gold-400">Home</a>
-      <a href="#about" onclick="toggleMobileMenu()" class="block text-sm text-cream-100 hover:text-gold-400">About</a>
-      <a href="#collections" onclick="toggleMobileMenu()" class="block text-sm text-cream-100 hover:text-gold-400">Collections</a>
-      <a href="#gold-scheme" onclick="toggleMobileMenu()" class="block text-sm text-cream-100 hover:text-gold-400">Gold Scheme</a>
-      <a href="#gallery" onclick="toggleMobileMenu()" class="block text-sm text-cream-100 hover:text-gold-400">Gallery</a>
-      <a href="#contact" onclick="toggleMobileMenu()" class="block text-sm text-cream-100 hover:text-gold-400">Contact</a>
+      <a href="#about" onclick="toggleMobileMenu()" class="block text-sm text-cream-100 hover:text-gold-400">About Showroom</a>
+      <a href="#collections" onclick="toggleMobileMenu()" class="block text-sm text-cream-100 hover:text-gold-400">Explore Collections</a>
+      <a href="#gold-scheme" onclick="toggleMobileMenu()" class="block text-sm text-cream-100 hover:text-gold-400">Gold Savings Scheme</a>
+      <a href="#gallery" onclick="toggleMobileMenu()" class="block text-sm text-cream-100 hover:text-gold-400">Jewellery Gallery</a>
+      <a href="#contact" onclick="toggleMobileMenu()" class="block text-sm text-cream-100 hover:text-gold-400">Contact Us</a>
+      
       <div class="pt-2 flex flex-col space-y-2">
-        <button onclick="toggleMobileMenu(); openAdminModal()" class="w-full py-2.5 text-xs font-bold text-gold-300 border border-gold-500/40 rounded-lg">
+        <button onclick="toggleMobileMenu(); openAdminModal()" class="w-full py-2.5 text-xs font-bold text-gold-300 border border-gold-500/40 rounded-xl text-center">
           + Admin Add Jewellery
         </button>
-        <button onclick="toggleMobileMenu(); openCustomModal()" class="w-full py-2.5 text-xs font-bold text-navy-950 bg-gold-gradient rounded-lg">
-          Custom Design Request
+        <button onclick="toggleMobileMenu(); openCustomModal()" class="w-full py-2.5 text-xs font-bold text-navy-950 bg-gold-gradient rounded-xl text-center">
+          Request Custom Design
         </button>
       </div>
     </div>
@@ -149,17 +199,24 @@
   <div class="bg-navy-900 border-b border-gold-500/40 py-2.5 text-cream-100 overflow-x-auto">
     <div class="max-w-7xl mx-auto px-4 flex items-center justify-between min-w-[650px] text-xs sm:text-sm">
       <div class="flex items-center space-x-2 text-gold-400 font-bold uppercase tracking-wider">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-        <span>Today's Gold Rate</span>
+        <span class="relative flex h-2.5 w-2.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+        </span>
+        <i data-lucide="trending-up" class="w-3.5 h-3.5 text-gold-400"></i>
+        <span>Today's Market Rates</span>
       </div>
       <div class="flex items-center space-x-8">
-        <div><span class="text-gold-300">24K Gold:</span> <strong class="text-white">₹ 16,397</strong> <span class="text-[10px] text-slate-400">/g</span></div>
+        <div><span class="text-gold-300 font-medium">24K Gold:</span> <strong class="text-white font-bold ml-1">₹ 16,397</strong> <span class="text-[10px] text-slate-400">/g</span></div>
         <div class="h-3 w-[1px] bg-gold-500/30"></div>
-        <div><span class="text-gold-300">22K Gold:</span> <strong class="text-white">₹ 15,030</strong> <span class="text-[10px] text-slate-400">/g</span></div>
+        <div><span class="text-gold-300 font-medium">22K Gold:</span> <strong class="text-white font-bold ml-1">₹ 15,030</strong> <span class="text-[10px] text-slate-400">/g</span></div>
         <div class="h-3 w-[1px] bg-gold-500/30"></div>
-        <div><span class="text-gold-300">Silver:</span> <strong class="text-white">₹ 275</strong> <span class="text-[10px] text-slate-400">/g</span></div>
+        <div><span class="text-gold-300 font-medium">Silver:</span> <strong class="text-white font-bold ml-1">₹ 275</strong> <span class="text-[10px] text-slate-400">/g</span></div>
       </div>
-      <div class="text-[11px] text-slate-400">Updated: 24 Aug 2026 09:45 AM</div>
+      <div class="text-[11px] text-slate-400 flex items-center space-x-1">
+        <i data-lucide="clock" class="w-3 h-3 text-gold-400"></i>
+        <span>Updated: 24 Aug 2026 09:45 AM</span>
+      </div>
     </div>
   </div>
 
@@ -167,25 +224,31 @@
   <section id="hero" class="relative bg-navy-950 py-6 sm:py-10 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <!-- Client Banner Artwork Showcase Card -->
+      <!-- Prominent Client Artwork Showcase Card -->
       <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-gold-500/30 group">
-        <img src="client_banner.png" alt="Shiva Mahajothi Jewellers Banner - சிவ மஹாஜோதி ஜுவெல்லர்ஸ்" class="w-full h-auto object-cover" />
-        <div class="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-transparent to-transparent"></div>
+        <img src="client_banner.png" alt="Shiva Mahajothi Jewellers Banner - சிவ மஹாஜோதி ஜுவெல்லர்ஸ்" class="w-full h-auto object-cover object-center" />
+        <div class="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/20 to-transparent"></div>
         
-        <div class="absolute bottom-0 inset-x-0 bg-navy-950/90 border-t border-gold-500/30 p-4 sm:p-6 backdrop-blur-md flex flex-col md:flex-row items-center justify-between gap-4">
+        <!-- Overlay Panel at Bottom of Banner -->
+        <div class="absolute bottom-0 inset-x-0 bg-navy-950/95 border-t border-gold-500/30 p-4 sm:p-6 backdrop-blur-md flex flex-col md:flex-row items-center justify-between gap-4">
           <div>
-            <span class="text-xs font-bold uppercase tracking-wider text-gold-400 bg-gold-500/10 px-3 py-1 rounded-full border border-gold-500/30 inline-block mb-1">
-              Tirunelveli Showroom
-            </span>
-            <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gold-metallic">Shiva Mahajothi Jewellers</h1>
-            <p class="font-tamil text-sm sm:text-base text-gold-300">தரமே எங்கள் தாரக மந்திரம்</p>
+            <div class="inline-flex items-center space-x-2 bg-gold-500/10 border border-gold-500/30 rounded-full px-3 py-0.5 mb-1">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-gold-400"></i>
+              <span class="text-xs font-bold uppercase tracking-wider text-gold-300">
+                Premium Jewellery • Trusted Craftsmanship • Tirunelveli
+              </span>
+            </div>
+            <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gold-metallic font-serif">Shiva Mahajothi Jewellers</h1>
+            <p class="font-tamil text-sm sm:text-base text-gold-300 font-semibold">தரமே எங்கள் தாரக மந்திரம்</p>
           </div>
+          
           <div class="flex items-center gap-3 w-full md:w-auto">
-            <a href="#collections" class="flex-1 md:flex-initial px-6 py-3 text-xs font-bold uppercase tracking-wider text-navy-950 bg-gold-gradient rounded-xl text-center shadow-lg hover:brightness-110">
-              Explore Collections
+            <a href="#collections" class="flex-1 md:flex-initial px-6 py-3 text-xs font-bold uppercase tracking-wider text-navy-950 bg-gold-gradient rounded-xl text-center shadow-lg hover:brightness-110 flex items-center justify-center space-x-1.5">
+              <span>Explore Collections</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </a>
             <a href="#contact" class="flex-1 md:flex-initial px-5 py-3 text-xs font-bold text-gold-300 border border-gold-500/40 rounded-xl text-center hover:bg-gold-500/10">
-              Contact Us
+              Contact Showroom
             </a>
           </div>
         </div>
@@ -194,76 +257,87 @@
     </div>
   </section>
 
-  <!-- 4. TRUST VALUE STRIP -->
+  <!-- 4. HERO TRUST / VALUE STRIP -->
   <section class="bg-navy-900 border-y border-gold-500/20 py-8 text-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div class="p-4 rounded-xl bg-navy-950/60 border border-gold-500/20 flex items-start space-x-3">
-        <i data-lucide="award" class="w-6 h-6 text-gold-400 shrink-0"></i>
+      <div class="p-4 rounded-xl bg-navy-950/60 border border-gold-500/20 flex items-start space-x-3 group hover:border-gold-500/50 transition-colors">
+        <div class="w-10 h-10 rounded-lg bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 shrink-0">
+          <i data-lucide="award" class="w-5 h-5"></i>
+        </div>
         <div>
-          <h3 class="font-bold text-sm">Premium Craftsmanship</h3>
+          <h3 class="font-bold text-sm text-white">Premium Craftsmanship</h3>
           <p class="font-tamil text-xs text-gold-300">உயர்தர கைவினைத்திறன்</p>
-          <p class="text-xs text-slate-300 mt-1">100% 916 KDM BIS Hallmarked gold.</p>
+          <p class="text-xs text-slate-300 mt-1">100% BIS Hallmarked 916 KDM gold crafted by master South Indian goldsmiths.</p>
         </div>
       </div>
-      <div class="p-4 rounded-xl bg-navy-950/60 border border-gold-500/20 flex items-start space-x-3">
-        <i data-lucide="palette" class="w-6 h-6 text-gold-400 shrink-0"></i>
+
+      <div class="p-4 rounded-xl bg-navy-950/60 border border-gold-500/20 flex items-start space-x-3 group hover:border-gold-500/50 transition-colors">
+        <div class="w-10 h-10 rounded-lg bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 shrink-0">
+          <i data-lucide="palette" class="w-5 h-5"></i>
+        </div>
         <div>
-          <h3 class="font-bold text-sm">Custom Jewellery</h3>
+          <h3 class="font-bold text-sm text-white">Custom Jewellery</h3>
           <p class="font-tamil text-xs text-gold-300">விருப்ப வடிவமைப்பு</p>
-          <p class="text-xs text-slate-300 mt-1">Bring reference photos for custom orders.</p>
+          <p class="text-xs text-slate-300 mt-1">Bring any reference photo to craft custom gold jewellery tailored to your vision.</p>
         </div>
       </div>
-      <div class="p-4 rounded-xl bg-navy-950/60 border border-gold-500/20 flex items-start space-x-3">
-        <i data-lucide="refresh-cw" class="w-6 h-6 text-gold-400 shrink-0"></i>
+
+      <div class="p-4 rounded-xl bg-navy-950/60 border border-gold-500/20 flex items-start space-x-3 group hover:border-gold-500/50 transition-colors">
+        <div class="w-10 h-10 rounded-lg bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 shrink-0">
+          <i data-lucide="refresh-cw" class="w-5 h-5"></i>
+        </div>
         <div>
-          <h3 class="font-bold text-sm">Buy • Sell • Exchange</h3>
+          <h3 class="font-bold text-sm text-white">Gold Buy • Sell • Exchange</h3>
           <p class="font-tamil text-xs text-gold-300">வாங்கல் • விற்பனை • பரிமாற்றம்</p>
-          <p class="text-xs text-slate-300 mt-1">Transparent exchange for old gold.</p>
+          <p class="text-xs text-slate-300 mt-1">Transparent exchange rates and competitive valuation for old gold items.</p>
         </div>
       </div>
-      <div class="p-4 rounded-xl bg-navy-950/60 border border-gold-500/20 flex items-start space-x-3">
-        <i data-lucide="store" class="w-6 h-6 text-gold-400 shrink-0"></i>
+
+      <div class="p-4 rounded-xl bg-navy-950/60 border border-gold-500/20 flex items-start space-x-3 group hover:border-gold-500/50 transition-colors">
+        <div class="w-10 h-10 rounded-lg bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 shrink-0">
+          <i data-lucide="store" class="w-5 h-5"></i>
+        </div>
         <div>
-          <h3 class="font-bold text-sm">B2B Wholesale & Retail</h3>
+          <h3 class="font-bold text-sm text-white">B2B Wholesale & Retail</h3>
           <p class="font-tamil text-xs text-gold-300">மொத்த & சில்லறை விற்பனை</p>
-          <p class="text-xs text-slate-300 mt-1">Supplying shops & retail customers.</p>
+          <p class="text-xs text-slate-300 mt-1">Serving individual retail families and bulk order wholesale jewellery partners.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 5. ANIMATED STATISTICS SECTION -->
+  <!-- 5. ANIMATED STATISTICS COUNTERS -->
   <!-- Demo statistics — replace with client-verified numbers -->
   <section class="bg-navy-950 py-12 border-b border-gold-500/20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="bg-navy-900 border border-gold-500/30 rounded-2xl p-6 sm:p-8 shadow-2xl">
+      <div class="bg-navy-900/90 border border-gold-500/30 rounded-2xl p-6 sm:p-8 shadow-2xl backdrop-blur-md">
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center divide-y sm:divide-y-0 sm:divide-x divide-gold-500/20">
           
-          <div class="pt-4 sm:pt-0">
-            <span class="text-[10px] font-mono text-gold-400 uppercase">01</span>
-            <div id="stat-1" class="text-3xl sm:text-4xl font-black text-white font-serif tracking-tight mt-1">30+</div>
-            <div class="text-xs font-bold text-cream-100 uppercase mt-1">Jewellery Varieties</div>
+          <div class="pt-4 sm:pt-0 group hover:-translate-y-1 transition-transform">
+            <span class="text-[10px] font-mono text-gold-400/80 uppercase tracking-widest">01</span>
+            <div id="stat-1" class="text-3xl sm:text-4xl lg:text-5xl font-black text-white font-serif tracking-tight mt-1 group-hover:text-gold-300 transition-colors">30+</div>
+            <div class="text-xs font-bold text-cream-100 uppercase tracking-wider mt-1">Jewellery Varieties</div>
             <div class="font-tamil text-xs text-gold-400">நகை வகைகள்</div>
           </div>
 
-          <div class="pt-4 sm:pt-0">
-            <span class="text-[10px] font-mono text-gold-400 uppercase">02</span>
-            <div id="stat-2" class="text-3xl sm:text-4xl font-black text-white font-serif tracking-tight mt-1">400+</div>
-            <div class="text-xs font-bold text-cream-100 uppercase mt-1">Unique Designs</div>
+          <div class="pt-4 sm:pt-0 group hover:-translate-y-1 transition-transform">
+            <span class="text-[10px] font-mono text-gold-400/80 uppercase tracking-widest">02</span>
+            <div id="stat-2" class="text-3xl sm:text-4xl lg:text-5xl font-black text-white font-serif tracking-tight mt-1 group-hover:text-gold-300 transition-colors">400+</div>
+            <div class="text-xs font-bold text-cream-100 uppercase tracking-wider mt-1">Unique Designs</div>
             <div class="font-tamil text-xs text-gold-400">அரிய வடிவமைப்புகள்</div>
           </div>
 
-          <div class="pt-4 sm:pt-0">
-            <span class="text-[10px] font-mono text-gold-400 uppercase">03</span>
-            <div id="stat-3" class="text-3xl sm:text-4xl font-black text-white font-serif tracking-tight mt-1">4,000+</div>
-            <div class="text-xs font-bold text-cream-100 uppercase mt-1">Happy Customers</div>
+          <div class="pt-4 sm:pt-0 group hover:-translate-y-1 transition-transform">
+            <span class="text-[10px] font-mono text-gold-400/80 uppercase tracking-widest">03</span>
+            <div id="stat-3" class="text-3xl sm:text-4xl lg:text-5xl font-black text-white font-serif tracking-tight mt-1 group-hover:text-gold-300 transition-colors">4,000+</div>
+            <div class="text-xs font-bold text-cream-100 uppercase tracking-wider mt-1">Happy Customers</div>
             <div class="font-tamil text-xs text-gold-400">மகிழ்ச்சியான வாடிக்கையாளர்கள்</div>
           </div>
 
-          <div class="pt-4 sm:pt-0">
-            <span class="text-[10px] font-mono text-gold-400 uppercase">04</span>
-            <div id="stat-4" class="text-3xl sm:text-4xl font-black text-white font-serif tracking-tight mt-1">7+</div>
-            <div class="text-xs font-bold text-cream-100 uppercase mt-1">Years of Excellence</div>
+          <div class="pt-4 sm:pt-0 group hover:-translate-y-1 transition-transform">
+            <span class="text-[10px] font-mono text-gold-400/80 uppercase tracking-widest">04</span>
+            <div id="stat-4" class="text-3xl sm:text-4xl lg:text-5xl font-black text-white font-serif tracking-tight mt-1 group-hover:text-gold-300 transition-colors">7+</div>
+            <div class="text-xs font-bold text-cream-100 uppercase tracking-wider mt-1">Years of Excellence</div>
             <div class="font-tamil text-xs text-gold-400">ஆண்டுகள் பாரம்பரியம்</div>
           </div>
 
@@ -272,79 +346,117 @@
     </div>
   </section>
 
-  <!-- 6. EXPLORE COLLECTIONS (8 CATEGORIES) -->
-  <section id="collections" class="py-16 bg-cream-100">
+  <!-- 6. EXPLORE OUR COLLECTIONS (8 CATEGORIES) -->
+  <section id="collections" class="py-16 sm:py-20 bg-cream-100 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-2xl mx-auto mb-12">
-        <h2 class="text-3xl font-bold font-serif text-navy-950">Explore Our <span class="text-gold-600">Collections</span></h2>
+        <div class="inline-flex items-center space-x-2 bg-navy-950/5 border border-gold-500/30 rounded-full px-4 py-1 mb-3">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-gold-600"></i>
+          <span class="text-xs font-bold uppercase tracking-wider text-navy-950">Curated Gold Collections</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-bold font-serif text-navy-950">Explore Our <span class="text-gold-600">Collections</span></h2>
         <p class="font-tamil text-gold-700 font-semibold text-base mt-1">எங்கள் சிறப்பான நகை சேகரிப்புகள்</p>
-        <div class="w-16 h-1 bg-gold-gradient mx-auto mt-3 rounded-full"></div>
+        <div class="w-20 h-1 bg-gold-gradient mx-auto mt-4 rounded-full"></div>
       </div>
 
+      <!-- 8 Categories Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- 8 Cards -->
-        <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-gold-500/20 hover:border-gold-500 transition-all p-4">
-          <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=600" class="w-full h-44 object-cover rounded-xl mb-3" />
-          <h3 class="font-bold text-navy-950 font-serif">Hollow Rope</h3>
-          <p class="font-tamil text-xs text-gold-700">ஹாலோ ரோப் செயின்கள்</p>
-          <p class="text-xs text-slate-600 mt-1">Lightweight yet strong hollow gold ropes.</p>
+        
+        <!-- Category 1 -->
+        <div onclick="filterGallery('Hollow Rope')" class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gold-500/20 hover:border-gold-500 transition-all p-4 cursor-pointer group transform hover:-translate-y-1.5">
+          <div class="relative h-44 overflow-hidden rounded-xl mb-3 bg-navy-950">
+            <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500" />
+            <span class="absolute top-2 right-2 bg-navy-950/80 backdrop-blur px-2.5 py-0.5 rounded-full text-[10px] font-bold text-gold-400 border border-gold-500/30">45+ Designs</span>
+          </div>
+          <h3 class="font-bold text-navy-950 font-serif text-lg group-hover:text-gold-700">Hollow Rope</h3>
+          <p class="font-tamil text-xs text-gold-700 font-semibold">ஹாலோ ரோப் செயின்கள்</p>
+          <p class="text-xs text-slate-600 mt-1 line-clamp-2">Lightweight yet structurally robust hollow gold ropes with exquisite luster.</p>
         </div>
 
-        <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-gold-500/20 hover:border-gold-500 transition-all p-4">
-          <img src="https://images.unsplash.com/photo-1611591475116-29a393e150aa?auto=format&fit=crop&q=80&w=600" class="w-full h-44 object-cover rounded-xl mb-3" />
-          <h3 class="font-bold text-navy-950 font-serif">Dollars & Pendants</h3>
-          <p class="font-tamil text-xs text-gold-700">டாலர்ஸ் & பெண்டன்ட்ஸ்</p>
-          <p class="text-xs text-slate-600 mt-1">Lakshmi & peacock gold pendants.</p>
+        <!-- Category 2 -->
+        <div onclick="filterGallery('Dollars & Pendants')" class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gold-500/20 hover:border-gold-500 transition-all p-4 cursor-pointer group transform hover:-translate-y-1.5">
+          <div class="relative h-44 overflow-hidden rounded-xl mb-3 bg-navy-950">
+            <img src="https://images.unsplash.com/photo-1611591475116-29a393e150aa?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500" />
+            <span class="absolute top-2 right-2 bg-navy-950/80 backdrop-blur px-2.5 py-0.5 rounded-full text-[10px] font-bold text-gold-400 border border-gold-500/30">80+ Designs</span>
+          </div>
+          <h3 class="font-bold text-navy-950 font-serif text-lg group-hover:text-gold-700">Dollars & Pendants</h3>
+          <p class="font-tamil text-xs text-gold-700 font-semibold">டாலர்ஸ் & பெண்டன்ட்ஸ்</p>
+          <p class="text-xs text-slate-600 mt-1 line-clamp-2">Intricately carved Goddess Lakshmi, peacock, and floral handcrafted gold dollars.</p>
         </div>
 
-        <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-gold-500/20 hover:border-gold-500 transition-all p-4">
-          <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&q=80&w=600" class="w-full h-44 object-cover rounded-xl mb-3" />
-          <h3 class="font-bold text-navy-950 font-serif">Necklace</h3>
-          <p class="font-tamil text-xs text-gold-700">நெக்லஸ் சேகரிப்பு</p>
-          <p class="text-xs text-slate-600 mt-1">Royal bridal & temple necklaces.</p>
+        <!-- Category 3 -->
+        <div onclick="filterGallery('Necklace')" class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gold-500/20 hover:border-gold-500 transition-all p-4 cursor-pointer group transform hover:-translate-y-1.5">
+          <div class="relative h-44 overflow-hidden rounded-xl mb-3 bg-navy-950">
+            <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500" />
+            <span class="absolute top-2 right-2 bg-navy-950/80 backdrop-blur px-2.5 py-0.5 rounded-full text-[10px] font-bold text-gold-400 border border-gold-500/30">120+ Designs</span>
+          </div>
+          <h3 class="font-bold text-navy-950 font-serif text-lg group-hover:text-gold-700">Necklace</h3>
+          <p class="font-tamil text-xs text-gold-700 font-semibold">நெக்லஸ் சேகரிப்பு</p>
+          <p class="text-xs text-slate-600 mt-1 line-clamp-2">Royal South Indian bridal necklaces and antique temple gold creations.</p>
         </div>
 
-        <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-gold-500/20 hover:border-gold-500 transition-all p-4">
-          <img src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&q=80&w=600" class="w-full h-44 object-cover rounded-xl mb-3" />
-          <h3 class="font-bold text-navy-950 font-serif">Chains</h3>
-          <p class="font-tamil text-xs text-gold-700">தங்கச் சங்கிலிகள்</p>
-          <p class="text-xs text-slate-600 mt-1">Daily-wear & grand gold chains.</p>
+        <!-- Category 4 -->
+        <div onclick="filterGallery('Chains')" class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gold-500/20 hover:border-gold-500 transition-all p-4 cursor-pointer group transform hover:-translate-y-1.5">
+          <div class="relative h-44 overflow-hidden rounded-xl mb-3 bg-navy-950">
+            <img src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500" />
+            <span class="absolute top-2 right-2 bg-navy-950/80 backdrop-blur px-2.5 py-0.5 rounded-full text-[10px] font-bold text-gold-400 border border-gold-500/30">60+ Designs</span>
+          </div>
+          <h3 class="font-bold text-navy-950 font-serif text-lg group-hover:text-gold-700">Chains</h3>
+          <p class="font-tamil text-xs text-gold-700 font-semibold">தங்கச் சங்கிலிகள்</p>
+          <p class="text-xs text-slate-600 mt-1 line-clamp-2">Solid daily-wear and celebratory 22K gold chains crafted for lasting elegance.</p>
         </div>
 
-        <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-gold-500/20 hover:border-gold-500 transition-all p-4">
-          <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=600" class="w-full h-44 object-cover rounded-xl mb-3" />
-          <h3 class="font-bold text-navy-950 font-serif">Rings</h3>
-          <p class="font-tamil text-xs text-gold-700">மோதிரங்கள்</p>
-          <p class="text-xs text-slate-600 mt-1">Stone-studded & classic gold rings.</p>
+        <!-- Category 5 -->
+        <div onclick="filterGallery('Rings')" class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gold-500/20 hover:border-gold-500 transition-all p-4 cursor-pointer group transform hover:-translate-y-1.5">
+          <div class="relative h-44 overflow-hidden rounded-xl mb-3 bg-navy-950">
+            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500" />
+            <span class="absolute top-2 right-2 bg-navy-950/80 backdrop-blur px-2.5 py-0.5 rounded-full text-[10px] font-bold text-gold-400 border border-gold-500/30">95+ Designs</span>
+          </div>
+          <h3 class="font-bold text-navy-950 font-serif text-lg group-hover:text-gold-700">Rings</h3>
+          <p class="font-tamil text-xs text-gold-700 font-semibold">மோதிரங்கள்</p>
+          <p class="text-xs text-slate-600 mt-1 line-clamp-2">Traditional stone-studded and modern geometric gold rings for men and women.</p>
         </div>
 
-        <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-gold-500/20 hover:border-gold-500 transition-all p-4">
-          <img src="https://images.unsplash.com/photo-1611591475116-29a393e150aa?auto=format&fit=crop&q=80&w=600" class="w-full h-44 object-cover rounded-xl mb-3" />
-          <h3 class="font-bold text-navy-950 font-serif">Bangles</h3>
-          <p class="font-tamil text-xs text-gold-700">வளையல்கள்</p>
-          <p class="text-xs text-slate-600 mt-1">South Indian Kada & carved bangles.</p>
+        <!-- Category 6 -->
+        <div onclick="filterGallery('Bangles')" class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gold-500/20 hover:border-gold-500 transition-all p-4 cursor-pointer group transform hover:-translate-y-1.5">
+          <div class="relative h-44 overflow-hidden rounded-xl mb-3 bg-navy-950">
+            <img src="https://images.unsplash.com/photo-1611591475116-29a393e150aa?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500" />
+            <span class="absolute top-2 right-2 bg-navy-950/80 backdrop-blur px-2.5 py-0.5 rounded-full text-[10px] font-bold text-gold-400 border border-gold-500/30">75+ Designs</span>
+          </div>
+          <h3 class="font-bold text-navy-950 font-serif text-lg group-hover:text-gold-700">Bangles</h3>
+          <p class="font-tamil text-xs text-gold-700 font-semibold">வளையல்கள்</p>
+          <p class="text-xs text-slate-600 mt-1 line-clamp-2">Classic South Indian Kada bangles with filigree work and polished finishes.</p>
         </div>
 
-        <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-gold-500/20 hover:border-gold-500 transition-all p-4">
-          <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&q=80&w=600" class="w-full h-44 object-cover rounded-xl mb-3" />
-          <h3 class="font-bold text-navy-950 font-serif">Chokers</h3>
-          <p class="font-tamil text-xs text-gold-700">சோக்கர் நெக்லஸ்</p>
-          <p class="text-xs text-slate-600 mt-1">High-neck gold chokers with stones.</p>
+        <!-- Category 7 -->
+        <div onclick="filterGallery('Chokers')" class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gold-500/20 hover:border-gold-500 transition-all p-4 cursor-pointer group transform hover:-translate-y-1.5">
+          <div class="relative h-44 overflow-hidden rounded-xl mb-3 bg-navy-950">
+            <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500" />
+            <span class="absolute top-2 right-2 bg-navy-950/80 backdrop-blur px-2.5 py-0.5 rounded-full text-[10px] font-bold text-gold-400 border border-gold-500/30">40+ Designs</span>
+          </div>
+          <h3 class="font-bold text-navy-950 font-serif text-lg group-hover:text-gold-700">Chokers</h3>
+          <p class="font-tamil text-xs text-gold-700 font-semibold">சோக்கர் நெக்லஸ்</p>
+          <p class="text-xs text-slate-600 mt-1 line-clamp-2">Magnificent high-neck gold chokers adorned with rubies, emeralds, and pearls.</p>
         </div>
 
-        <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-gold-500/20 hover:border-gold-500 transition-all p-4">
-          <img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&q=80&w=600" class="w-full h-44 object-cover rounded-xl mb-3" />
-          <h3 class="font-bold text-navy-950 font-serif">Earrings</h3>
-          <p class="font-tamil text-xs text-gold-700">காதணிகள் / ஜிமிக்கி</p>
-          <p class="text-xs text-slate-600 mt-1">Traditional Jhumkas & studs.</p>
+        <!-- Category 8 -->
+        <div onclick="filterGallery('Earrings')" class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gold-500/20 hover:border-gold-500 transition-all p-4 cursor-pointer group transform hover:-translate-y-1.5">
+          <div class="relative h-44 overflow-hidden rounded-xl mb-3 bg-navy-950">
+            <img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500" />
+            <span class="absolute top-2 right-2 bg-navy-950/80 backdrop-blur px-2.5 py-0.5 rounded-full text-[10px] font-bold text-gold-400 border border-gold-500/30">110+ Designs</span>
+          </div>
+          <h3 class="font-bold text-navy-950 font-serif text-lg group-hover:text-gold-700">Earrings</h3>
+          <p class="font-tamil text-xs text-gold-700 font-semibold">காதணிகள் / ஜிமிக்கி</p>
+          <p class="text-xs text-slate-600 mt-1 line-clamp-2">Grand South Indian Jhumkas, studs, and drops reflecting authentic heritage.</p>
         </div>
+
       </div>
 
     </div>
   </section>
 
-  <!-- 7. FEATURED JEWELLERY GRID WITH DYNAMIC ADMIN UPLOADS -->
+  <!-- 7. FEATURED JEWELLERY PRODUCTS (WITH DYNAMIC ADMIN UPLOADS) -->
   <section id="featured-section" class="py-16 bg-white border-t border-gold-500/20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
@@ -353,116 +465,186 @@
           <h2 class="text-3xl font-bold font-serif text-navy-950">Featured <span class="text-gold-600">Jewellery</span></h2>
           <p class="font-tamil text-gold-700 font-medium">சிறப்பு நகைகள்</p>
         </div>
-        <button onclick="openAdminModal()" class="mt-4 md:mt-0 px-4 py-2 text-xs font-bold text-navy-950 bg-gold-gradient rounded-full shadow flex items-center space-x-1">
-          <i data-lucide="plus" class="w-4 h-4"></i>
-          <span>Add New Product (Admin)</span>
+        <button onclick="openAdminModal()" class="mt-4 md:mt-0 px-4 py-2 text-xs font-bold text-navy-950 bg-gold-gradient hover:brightness-110 rounded-full shadow-lg flex items-center space-x-1.5 transition-transform hover:scale-105">
+          <i data-lucide="plus-circle" class="w-4 h-4"></i>
+          <span>+ Add New Product (Admin)</span>
         </button>
       </div>
 
       <!-- Live Product Grid Container -->
       <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Javascript renders initial products & newly uploaded items here -->
+        <!-- Renders items dynamically via JavaScript -->
       </div>
 
     </div>
   </section>
 
   <!-- 8. ABOUT US SECTION -->
-  <section id="about" class="py-16 bg-navy-950 text-white">
+  <section id="about" class="py-16 sm:py-20 bg-navy-950 text-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
       <div>
-        <span class="text-xs font-bold uppercase tracking-wider text-gold-400">About Showroom</span>
-        <h2 class="text-3xl font-bold font-serif text-gold-metallic mt-1">Shiva Mahajothi Jewellers</h2>
-        <p class="font-tamil text-lg text-gold-300 font-semibold mt-1">“தரமே எங்கள் தாரக மந்திரம்”</p>
+        <span class="text-xs font-bold uppercase tracking-wider text-gold-400 bg-gold-500/10 px-3 py-1 rounded-full border border-gold-500/30">
+          Our Heritage
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-bold font-serif text-gold-metallic mt-2">Shiva Mahajothi Jewellers</h2>
+        <p class="font-tamil text-xl text-gold-300 font-semibold mt-1">“தரமே எங்கள் தாரக மந்திரம்”</p>
+        
         <p class="text-slate-300 text-sm leading-relaxed mt-4">
           Located in the heart of Tirunelveli Town at West Car Street, Shiva Mahajothi Jewellers is built on trust, traditional craftsmanship, and uncompromising gold purity. We cater to wholesale partners (B2B) and retail families (B2C) with bespoke gold ornaments, 916 BIS Hallmarked jewelry, and transparent gold scheme services.
         </p>
-        <div class="mt-6 flex items-center space-x-4 text-xs font-bold">
-          <div class="bg-navy-900 border border-gold-500/30 p-3 rounded-xl text-center">
-            <span class="text-gold-400 block text-lg font-serif">100%</span>
-            <span>Hallmarked Gold</span>
+
+        <div class="mt-6 grid grid-cols-2 gap-4 text-xs font-bold">
+          <div class="bg-navy-900 border border-gold-500/30 p-4 rounded-xl text-center">
+            <span class="text-gold-400 block text-2xl font-serif">100%</span>
+            <span class="text-slate-200 mt-1 block">Hallmarked Purity</span>
           </div>
-          <div class="bg-navy-900 border border-gold-500/30 p-3 rounded-xl text-center">
-            <span class="text-gold-400 block text-lg font-serif">B2B / B2C</span>
-            <span>Wholesale & Retail</span>
+          <div class="bg-navy-900 border border-gold-500/30 p-4 rounded-xl text-center">
+            <span class="text-gold-400 block text-2xl font-serif">B2B & B2C</span>
+            <span class="text-slate-200 mt-1 block">Wholesale & Retail</span>
           </div>
         </div>
       </div>
+
       <div class="relative">
-        <img src="client_banner.png" class="rounded-2xl border border-gold-500/40 shadow-2xl" />
+        <div class="relative rounded-2xl overflow-hidden border border-gold-500/40 shadow-2xl">
+          <img src="client_banner.png" alt="Shiva Mahajothi Jewellers Showroom Asset" class="w-full h-auto object-cover" />
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 9. B2B + B2C SECTION -->
+  <!-- 9. B2B + B2C DUAL SECTION -->
   <section class="py-16 bg-cream-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-      <!-- Card 1: B2B -->
-      <div class="bg-navy-900 text-white rounded-2xl p-8 border border-gold-500/30 shadow-xl">
-        <span class="text-gold-400 text-xs font-bold uppercase tracking-wider">B2B Services</span>
-        <h3 class="text-2xl font-bold font-serif text-white mt-1">Business to Business</h3>
-        <p class="font-tamil text-gold-300 text-xs mt-0.5">மொத்த நகை ஆர்டர்கள்</p>
-        <p class="text-slate-300 text-xs leading-relaxed mt-3">
-          We provide wholesale gold supply to jewellery retail shops, resellers, and business establishments. Enjoy bulk production, competitive pricing, and dependable order execution.
+      
+      <!-- CARD 1: B2B -->
+      <div class="bg-navy-900 text-white rounded-3xl p-8 border border-gold-500/30 shadow-xl relative overflow-hidden">
+        <span class="text-gold-400 text-xs font-bold uppercase tracking-wider bg-gold-500/10 px-3 py-1 rounded-full border border-gold-500/30">
+          Wholesale Network
+        </span>
+        <h3 class="text-2xl font-bold font-serif text-white mt-3">B2B – Business to Business</h3>
+        <p class="font-tamil text-gold-300 text-xs font-medium mt-0.5">மொத்த நகை ஆர்டர்கள் & விநியோகம்</p>
+        <p class="text-slate-300 text-xs leading-relaxed mt-4">
+          We provide wholesale gold supply to jewellery retail shops, resellers, and business establishments. Enjoy bulk quantities, competitive pricing, and dependable order execution crafted by skilled South Indian goldsmiths.
         </p>
+        <button onclick="openEnquireModal('B2B Wholesale')" class="mt-6 px-5 py-2.5 text-xs font-bold text-navy-950 bg-gold-gradient rounded-xl shadow hover:brightness-110">
+          Enquire for B2B Supply
+        </button>
       </div>
-      <!-- Card 2: B2C -->
-      <div class="bg-white text-navy-950 rounded-2xl p-8 border border-gold-500/30 shadow-xl">
-        <span class="text-gold-600 text-xs font-bold uppercase tracking-wider">B2C Showroom</span>
-        <h3 class="text-2xl font-bold font-serif mt-1">Business to Customer</h3>
-        <p class="font-tamil text-gold-700 text-xs mt-0.5">சில்லறை விற்பனை</p>
-        <p class="text-slate-600 text-xs leading-relaxed mt-3">
-          Our retail showroom welcomes individual buyers seeking bridal sets, daily chains, bangles, and customized ornaments backed by warm personal service.
+
+      <!-- CARD 2: B2C -->
+      <div class="bg-white text-navy-950 rounded-3xl p-8 border border-gold-500/30 shadow-xl relative overflow-hidden">
+        <span class="text-gold-700 text-xs font-bold uppercase tracking-wider bg-gold-100 px-3 py-1 rounded-full border border-gold-500/30">
+          Retail Showroom
+        </span>
+        <h3 class="text-2xl font-bold font-serif mt-3">B2C – Business to Customer</h3>
+        <p class="font-tamil text-gold-700 text-xs font-medium mt-0.5">சில்லறை விற்பனை அரங்கம்</p>
+        <p class="text-slate-600 text-xs leading-relaxed mt-4">
+          Our retail showroom welcomes individual buyers and families seeking bridal sets, daily chains, bangles, rings, and customized gold ornaments backed by warm, transparent, and personalized customer service.
         </p>
+        <button onclick="openEnquireModal('B2C Retail')" class="mt-6 px-5 py-2.5 text-xs font-bold text-white bg-navy-950 rounded-xl shadow hover:bg-navy-900">
+          Visit Showroom / Enquire
+        </button>
       </div>
+
     </div>
   </section>
 
   <!-- 10. CUSTOM JEWELLERY SECTION -->
-  <section class="py-16 bg-navy-900 text-white border-y border-gold-500/20">
+  <section class="py-16 bg-navy-950 text-white border-y border-gold-500/20 relative">
     <div class="max-w-4xl mx-auto px-4 text-center">
-      <h2 class="text-3xl font-bold font-serif text-gold-metallic">Your Vision. Our Craftsmanship.</h2>
-      <p class="font-tamil text-gold-300 mt-1 text-sm">உங்கள் விருப்பமான நகை வடிவமைப்பு</p>
-      <p class="text-slate-300 text-xs sm:text-sm mt-3 leading-relaxed">
+      <div class="w-12 h-12 rounded-full bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 mx-auto mb-3">
+        <i data-lucide="palette" class="w-6 h-6"></i>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-bold font-serif text-gold-metallic">Your Vision. Our Craftsmanship.</h2>
+      <p class="font-tamil text-gold-300 mt-1 text-sm font-semibold">உங்கள் விருப்பமான நகை வடிவமைப்பு</p>
+      <p class="text-slate-300 text-xs sm:text-sm mt-4 leading-relaxed max-w-2xl mx-auto">
         Looking for a unique jewellery design? Simply bring a photograph or reference image, and the skilled artisans at Shiva Mahajothi Jewellers will transform your vision into reality with exceptional craftsmanship.
       </p>
-      <button onclick="openCustomModal()" class="mt-6 px-8 py-3 text-xs font-bold uppercase tracking-wider text-navy-950 bg-gold-gradient rounded-full shadow-lg hover:brightness-110">
+      <button onclick="openCustomModal()" class="mt-6 px-8 py-3 text-xs font-bold uppercase tracking-wider text-navy-950 bg-gold-gradient rounded-full shadow-lg hover:brightness-110 transform hover:scale-105 transition-all">
         Upload / Share Your Design
       </button>
     </div>
   </section>
 
-  <!-- 11. THANGAMAZHAI GOLD SAVINGS SCHEME & BILINGUAL TERMS -->
-  <section id="gold-scheme" class="py-16 bg-cream-100">
+  <!-- 11. BUY / SELL / EXCHANGE GOLD -->
+  <section class="py-16 bg-cream-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <!-- Scheme Banner -->
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <h2 class="text-3xl font-bold font-serif text-navy-950">Buy • Sell • Exchange <span class="text-gold-600">Gold</span></h2>
+        <p class="font-tamil text-gold-700 font-semibold text-sm">தங்க நகை வாங்குதல் • விற்பனை • பரிமாற்றம்</p>
+        <div class="w-16 h-1 bg-gold-gradient mx-auto mt-3 rounded-full"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- BUY -->
+        <div class="bg-white p-6 rounded-2xl border border-gold-500/20 shadow-md text-center group hover:border-gold-500 transition-all">
+          <div class="w-12 h-12 rounded-full bg-gold-100 text-gold-700 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+            <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+          </div>
+          <h3 class="font-bold text-navy-950 text-lg font-serif">BUY GOLD</h3>
+          <p class="text-xs text-slate-600 mt-2">Explore 916 BIS Hallmarked bridal sets, chains, bangles, and pendants from our showroom.</p>
+          <button onclick="openEnquireModal('Buy Gold')" class="mt-4 px-4 py-2 text-xs font-bold text-navy-950 bg-gold-100 rounded-lg hover:bg-gold-500 hover:text-navy-950 transition-colors">Enquire Now</button>
+        </div>
+
+        <!-- SELL -->
+        <div class="bg-white p-6 rounded-2xl border border-gold-500/20 shadow-md text-center group hover:border-gold-500 transition-all">
+          <div class="w-12 h-12 rounded-full bg-gold-100 text-gold-700 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+            <i data-lucide="coins" class="w-6 h-6"></i>
+          </div>
+          <h3 class="font-bold text-navy-950 text-lg font-serif">SELL GOLD</h3>
+          <p class="text-xs text-slate-600 mt-2">Enquire about selling your existing gold jewellery with fair market valuation.</p>
+          <button onclick="openEnquireModal('Sell Gold')" class="mt-4 px-4 py-2 text-xs font-bold text-navy-950 bg-gold-100 rounded-lg hover:bg-gold-500 hover:text-navy-950 transition-colors">Enquire Now</button>
+        </div>
+
+        <!-- EXCHANGE -->
+        <div class="bg-white p-6 rounded-2xl border border-gold-500/20 shadow-md text-center group hover:border-gold-500 transition-all">
+          <div class="w-12 h-12 rounded-full bg-gold-100 text-gold-700 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+            <i data-lucide="refresh-cw" class="w-6 h-6"></i>
+          </div>
+          <h3 class="font-bold text-navy-950 text-lg font-serif">EXCHANGE GOLD</h3>
+          <p class="text-xs text-slate-600 mt-2">Exchange old traditional jewellery for trendy new hallmarked gold designs.</p>
+          <button onclick="openEnquireModal('Exchange Gold')" class="mt-4 px-4 py-2 text-xs font-bold text-navy-950 bg-gold-100 rounded-lg hover:bg-gold-500 hover:text-navy-950 transition-colors">Enquire Now</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 12. THANGAMAZHAI SAVINGS SCHEME & BILINGUAL TERMS -->
+  <section id="gold-scheme" class="py-16 bg-white border-t border-gold-500/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Banner Card -->
       <div class="bg-navy-950 text-white rounded-3xl p-8 border border-gold-500/40 shadow-2xl mb-12 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
         <div>
-          <span class="text-gold-400 text-xs font-bold uppercase tracking-wider">Gold Savings Plan</span>
-          <h2 class="text-3xl font-bold font-tamil text-gold-metallic mt-1">தங்கமழை சேமிப்பு திட்டம்</h2>
+          <span class="text-gold-400 text-xs font-bold uppercase tracking-wider bg-gold-500/10 px-3 py-1 rounded-full border border-gold-500/30">
+            Gold Savings Plan
+          </span>
+          <h2 class="text-3xl font-bold font-tamil text-gold-metallic mt-2">தங்கமழை சேமிப்பு திட்டம்</h2>
           <h3 class="text-xl font-serif text-cream-100">Thangamazhai Savings Scheme</h3>
           <p class="text-slate-300 text-xs leading-relaxed mt-3">
             Build your monthly gold savings safely with Shiva Mahajothi Jewellers and choose your favorite gold ornaments at the end of the 12-month tenure without making charges!
           </p>
-          <button onclick="openEnquireModal('Thangamazhai Gold Scheme')" class="mt-5 px-6 py-2.5 text-xs font-bold text-navy-950 bg-gold-gradient rounded-xl shadow">
+          <button onclick="openEnquireModal('Thangamazhai Scheme')" class="mt-5 px-6 py-2.5 text-xs font-bold text-navy-950 bg-gold-gradient rounded-xl shadow hover:brightness-110">
             Join Scheme Now
           </button>
         </div>
         <div>
-          <img src="client_banner.png" class="rounded-2xl border border-gold-500/30 shadow-xl" />
+          <img src="client_banner.png" alt="Thangamazhai Gold Scheme Banner" class="rounded-2xl border border-gold-500/30 shadow-xl" />
         </div>
       </div>
 
-      <!-- Bilingual Terms & Conditions -->
+      <!-- Bilingual Terms Header -->
       <div class="text-center mb-8">
         <h3 class="text-2xl font-bold font-serif text-navy-950">Terms & Conditions</h3>
         <p class="font-tamil text-gold-700 font-semibold text-sm">நிபந்தனைகள்</p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <!-- Tamil Terms -->
-        <div class="bg-white rounded-2xl p-6 border border-gold-500/30 shadow-md">
+        <!-- Tamil Card (EXACT VERBATIM TEXT) -->
+        <div class="bg-cream-50 rounded-2xl p-6 border border-gold-500/30 shadow-md">
           <h4 class="font-tamil font-bold text-navy-950 text-base border-b border-gold-500/20 pb-2 mb-4">
             தங்கமழை சேமிப்பு திட்டம் - நிபந்தனைகள்
           </h4>
@@ -476,8 +658,8 @@
           </ol>
         </div>
 
-        <!-- English Terms -->
-        <div class="bg-white rounded-2xl p-6 border border-gold-500/30 shadow-md">
+        <!-- English Card (EXACT VERBATIM TEXT) -->
+        <div class="bg-cream-50 rounded-2xl p-6 border border-gold-500/30 shadow-md">
           <h4 class="font-serif font-bold text-navy-950 text-base border-b border-gold-500/20 pb-2 mb-4">
             Thangamazhai Savings Scheme - Terms & Conditions
           </h4>
@@ -495,20 +677,51 @@
     </div>
   </section>
 
-  <!-- 12. CONTACT SECTION -->
+  <!-- 13. FILTERABLE GALLERY EXPERIENCE WITH LIGHTBOX -->
+  <section id="gallery" class="py-16 bg-cream-100 border-t border-gold-500/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <h2 class="text-3xl font-bold font-serif text-navy-950">Jewellery <span class="text-gold-600">Gallery</span></h2>
+        <p class="font-tamil text-gold-700 font-semibold text-sm">நகைக் காட்சிப்பிழை</p>
+        <div class="w-16 h-1 bg-gold-gradient mx-auto mt-3 rounded-full"></div>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-2 mb-8" id="gallery-tabs">
+        <button onclick="filterGallery('All')" class="px-4 py-2 text-xs font-bold rounded-full bg-navy-950 text-gold-300 shadow tab-btn">All</button>
+        <button onclick="filterGallery('Hollow Rope')" class="px-4 py-2 text-xs font-bold rounded-full bg-white text-navy-950 border border-gold-500/30 hover:bg-gold-50 tab-btn">Hollow Rope</button>
+        <button onclick="filterGallery('Dollars & Pendants')" class="px-4 py-2 text-xs font-bold rounded-full bg-white text-navy-950 border border-gold-500/30 hover:bg-gold-50 tab-btn">Dollars & Pendants</button>
+        <button onclick="filterGallery('Necklace')" class="px-4 py-2 text-xs font-bold rounded-full bg-white text-navy-950 border border-gold-500/30 hover:bg-gold-50 tab-btn">Necklace</button>
+        <button onclick="filterGallery('Chains')" class="px-4 py-2 text-xs font-bold rounded-full bg-white text-navy-950 border border-gold-500/30 hover:bg-gold-50 tab-btn">Chains</button>
+        <button onclick="filterGallery('Rings')" class="px-4 py-2 text-xs font-bold rounded-full bg-white text-navy-950 border border-gold-500/30 hover:bg-gold-50 tab-btn">Rings</button>
+        <button onclick="filterGallery('Bangles')" class="px-4 py-2 text-xs font-bold rounded-full bg-white text-navy-950 border border-gold-500/30 hover:bg-gold-50 tab-btn">Bangles</button>
+        <button onclick="filterGallery('Chokers')" class="px-4 py-2 text-xs font-bold rounded-full bg-white text-navy-950 border border-gold-500/30 hover:bg-gold-50 tab-btn">Chokers</button>
+        <button onclick="filterGallery('Earrings')" class="px-4 py-2 text-xs font-bold rounded-full bg-white text-navy-950 border border-gold-500/30 hover:bg-gold-50 tab-btn">Earrings</button>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div id="gallery-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        <!-- Rendered dynamically -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 14. CONTACT SECTION -->
   <section id="contact" class="py-16 bg-navy-950 text-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12">
       <div>
         <span class="text-xs font-bold uppercase tracking-wider text-gold-400">Visit Our Showroom</span>
         <h2 class="text-3xl font-bold font-serif text-gold-metallic mt-1">Contact Details</h2>
-        <p class="font-tamil text-gold-300 text-sm">திருநெல்வேலி கிளை</p>
+        <p class="font-tamil text-gold-300 text-sm">திருநெல்வேலி கிளை முகவரி</p>
 
         <div class="mt-6 space-y-4 text-xs">
           <div class="flex items-start space-x-3">
-            <i data-lucide="map-pin" class="w-5 h-5 text-gold-400 shrink-0"></i>
+            <i data-lucide="map-pin" class="w-5 h-5 text-gold-400 shrink-0 mt-0.5"></i>
             <div>
-              <strong class="text-white block text-sm">Address:</strong>
-              <span class="text-slate-300 leading-relaxed">
+              <strong class="text-white block text-sm">Showroom Address:</strong>
+              <span class="text-slate-300 leading-relaxed block mt-0.5">
                 97, West Car Street, A.V Complex (Tamil Nadu Grama Bank), Tirunelveli Town, Tamil Nadu – 627006.
               </span>
             </div>
@@ -517,34 +730,34 @@
           <div class="flex items-center space-x-3">
             <i data-lucide="phone" class="w-5 h-5 text-gold-400 shrink-0"></i>
             <div>
-              <strong class="text-white">Office Phone:</strong> <span class="text-slate-300">+91 744 916 6 916</span>
+              <strong class="text-white">Office Phone:</strong> <span class="text-slate-300 ml-1">+91 744 916 6 916</span>
             </div>
           </div>
 
           <div class="flex items-center space-x-3">
             <i data-lucide="user" class="w-5 h-5 text-gold-400 shrink-0"></i>
             <div>
-              <strong class="text-white">Proprietor:</strong> <span class="text-slate-300">+91 94883 26833</span>
+              <strong class="text-white">Proprietor:</strong> <span class="text-slate-300 ml-1">+91 94883 26833</span>
             </div>
           </div>
 
           <div class="flex items-center space-x-3">
             <i data-lucide="message-square" class="w-5 h-5 text-green-400 shrink-0"></i>
             <div>
-              <strong class="text-white">Orders / WhatsApp:</strong> <span class="text-slate-300">+91 744 916 6 916</span>
+              <strong class="text-white">Orders / WhatsApp:</strong> <span class="text-slate-300 ml-1">+91 744 916 6 916</span>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Quick Message Form -->
-      <div class="bg-navy-900 p-6 rounded-2xl border border-gold-500/30">
-        <h3 class="text-lg font-bold text-white mb-4">Send Showroom Enquiry</h3>
+      <div class="bg-navy-900 p-6 rounded-2xl border border-gold-500/30 shadow-2xl">
+        <h3 class="text-lg font-bold text-white mb-4 font-serif">Send Showroom Enquiry</h3>
         <form onsubmit="handleFormSubmit(event)" class="space-y-3">
           <input type="text" placeholder="Your Name" required class="w-full px-3.5 py-2.5 bg-navy-950 border border-gold-500/30 rounded-xl text-xs text-white placeholder-slate-400 focus:outline-none focus:border-gold-400" />
           <input type="tel" placeholder="Phone Number" required class="w-full px-3.5 py-2.5 bg-navy-950 border border-gold-500/30 rounded-xl text-xs text-white placeholder-slate-400 focus:outline-none focus:border-gold-400" />
           <textarea placeholder="Message / Enquiry details..." rows="3" required class="w-full px-3.5 py-2.5 bg-navy-950 border border-gold-500/30 rounded-xl text-xs text-white placeholder-slate-400 focus:outline-none focus:border-gold-400"></textarea>
-          <button type="submit" class="w-full py-2.5 text-xs font-bold text-navy-950 bg-gold-gradient rounded-xl shadow hover:brightness-110">
+          <button type="submit" class="w-full py-3 text-xs font-bold uppercase tracking-wider text-navy-950 bg-gold-gradient rounded-xl shadow hover:brightness-110">
             Submit Enquiry
           </button>
         </form>
@@ -552,16 +765,23 @@
     </div>
   </section>
 
-  <!-- 13. FOOTER -->
+  <!-- 15. FOOTER -->
   <footer class="bg-navy-950 border-t border-gold-500/30 py-8 text-slate-400 text-xs">
     <div class="max-w-7xl mx-auto px-4 text-center space-y-3">
-      <div class="font-serif font-bold text-base text-gold-metallic">Shiva Mahajothi Jewellers</div>
-      <div class="font-tamil text-gold-300">தரமே எங்கள் தாரக மந்திரம்</div>
+      <div class="font-serif font-bold text-lg text-gold-metallic">Shiva Mahajothi Jewellers</div>
+      <div class="font-tamil text-gold-300 font-medium">தரமே எங்கள் தாரக மந்திரம்</div>
+      <div class="flex items-center justify-center space-x-6 text-slate-400 py-2">
+        <a href="#hero" class="hover:text-gold-400">Home</a>
+        <a href="#about" class="hover:text-gold-400">About</a>
+        <a href="#collections" class="hover:text-gold-400">Collections</a>
+        <a href="#gold-scheme" class="hover:text-gold-400">Gold Scheme</a>
+        <a href="#contact" class="hover:text-gold-400">Contact</a>
+      </div>
       <p>© 2026–2027 Shiva Mahajothi Jewellers. All rights reserved.</p>
     </div>
   </footer>
 
-  <!-- 14. FLOATING WHATSAPP BUTTON -->
+  <!-- 16. FLOATING WHATSAPP BUTTON -->
   <a href="https://wa.me/917449166916" target="_blank" class="fixed bottom-6 right-6 z-50 bg-green-500 text-white p-3.5 rounded-full shadow-2xl animate-whatsapp flex items-center justify-center">
     <i data-lucide="message-square" class="w-6 h-6"></i>
   </a>
@@ -579,7 +799,7 @@
         <i data-lucide="plus-circle" class="w-5 h-5"></i>
         <h3 class="font-bold font-serif text-lg text-white">Admin Jewellery Upload</h3>
       </div>
-      <p class="text-xs text-slate-300 mb-4">Add new gold ornaments to live showroom catalogue mockup.</p>
+      <p class="text-xs text-slate-300 mb-4">Add new gold items to live showroom catalogue mockup.</p>
 
       <form onsubmit="handleAdminUpload(event)" class="space-y-3">
         <div>
@@ -618,7 +838,7 @@
             <input id="admin-weight" type="text" placeholder="e.g. 36.5 grams" required class="w-full px-3 py-2 bg-navy-950 border border-gold-500/30 rounded-lg text-xs text-white" />
           </div>
           <div>
-            <label class="block text-[11px] text-gold-300 font-semibold mb-1">Image URL / Select Sample</label>
+            <label class="block text-[11px] text-gold-300 font-semibold mb-1">Image Sample</label>
             <select id="admin-image" class="w-full px-3 py-2 bg-navy-950 border border-gold-500/30 rounded-lg text-xs text-white">
               <option value="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&q=80&w=800">Gold Necklace Sample</option>
               <option value="https://images.unsplash.com/photo-1611591475116-29a393e150aa?auto=format&fit=crop&q=80&w=800">Gold Bangles Sample</option>
@@ -649,7 +869,7 @@
       </button>
 
       <img id="modal-img" src="" class="w-full h-56 object-cover rounded-xl mb-4 border border-gold-500/20" />
-      <span id="modal-purity" class="text-[10px] font-bold uppercase text-gold-700 bg-gold-100 px-2.5 py-1 rounded-full"></span>
+      <span id="modal-purity" class="text-[10px] font-bold uppercase text-gold-700 bg-gold-100 px-2.5 py-1 rounded-full border border-gold-500/30"></span>
       <h3 id="modal-title" class="text-xl font-bold font-serif mt-2"></h3>
       <p id="modal-title-ta" class="font-tamil text-xs text-gold-700 font-semibold mb-2"></p>
       
@@ -693,9 +913,21 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT STATE & INTERACTIONS -->
+  <!-- D. GALLERY LIGHTBOX MODAL -->
+  <div id="lightbox-modal" class="fixed inset-0 z-50 hidden bg-navy-950/90 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="relative max-w-2xl w-full text-center">
+      <button onclick="closeLightbox()" class="absolute -top-10 right-0 text-white hover:text-gold-400">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+      <img id="lightbox-img" src="" class="max-h-[80vh] mx-auto rounded-2xl border border-gold-500/40 shadow-2xl" />
+      <h3 id="lightbox-title" class="text-white font-serif font-bold text-lg mt-3"></h3>
+      <p id="lightbox-cat" class="text-gold-400 text-xs font-semibold"></p>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT STATE & LOGIC -->
   <script>
-    // Initialize Lucide Icons
+    // Initialize Icons
     lucide.createIcons();
 
     // Default Products Dataset
@@ -786,7 +1018,7 @@
             </div>
           </div>
           <div class="p-5 pt-0 flex items-center gap-2">
-            <button onclick="openProductModal('${p.id}')" class="flex-1 py-2 text-xs font-bold text-navy-950 border border-gold-500/40 rounded-xl hover:bg-gold-50 font-medium">
+            <button onclick="openProductModal('${p.id}')" class="flex-1 py-2 text-xs font-bold text-navy-950 border border-gold-500/40 rounded-xl hover:bg-gold-50 transition-colors">
               View Details
             </button>
             <a href="https://wa.me/917449166916?text=Enquiry%20for%20${encodeURIComponent(p.title)}" target="_blank" class="p-2 bg-green-500 text-white rounded-xl hover:bg-green-600">
@@ -799,23 +1031,39 @@
       lucide.createIcons();
     }
 
-    // Modal Control Functions
-    function toggleMobileMenu() {
-      document.getElementById('mobile-menu').classList.toggle('hidden');
+    // Filterable Gallery Handler
+    function filterGallery(cat) {
+      const grid = document.getElementById('gallery-grid');
+      grid.innerHTML = '';
+
+      const filtered = cat === 'All' ? products : products.filter(p => p.category === cat);
+      const displayItems = filtered.length > 0 ? filtered : products;
+
+      displayItems.forEach(p => {
+        const item = document.createElement('div');
+        item.className = "relative rounded-xl overflow-hidden shadow border border-gold-500/20 aspect-square bg-navy-950 cursor-pointer group";
+        item.onclick = () => openLightbox(p.image, p.title, p.category);
+        item.innerHTML = `
+          <img src="${p.image}" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3 flex flex-col justify-end">
+            <span class="text-xs text-white font-bold font-serif">${p.title}</span>
+            <span class="text-[10px] text-gold-400">${p.category}</span>
+          </div>
+        `;
+        grid.appendChild(item);
+      });
+      lucide.createIcons();
     }
 
-    function openAdminModal() {
-      document.getElementById('admin-modal').classList.remove('hidden');
-    }
-    function closeAdminModal() {
-      document.getElementById('admin-modal').classList.add('hidden');
-    }
+    // Modals Handlers
+    function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
+    function openAdminModal() { document.getElementById('admin-modal').classList.remove('hidden'); }
+    function closeAdminModal() { document.getElementById('admin-modal').classList.add('hidden'); }
+    function openCustomModal() { document.getElementById('custom-modal').classList.remove('hidden'); }
+    function closeCustomModal() { document.getElementById('custom-modal').classList.add('hidden'); }
 
-    function openCustomModal() {
+    function openEnquireModal(subject) {
       document.getElementById('custom-modal').classList.remove('hidden');
-    }
-    function closeCustomModal() {
-      document.getElementById('custom-modal').classList.add('hidden');
     }
 
     function openProductModal(id) {
@@ -831,14 +1079,20 @@
       document.getElementById('modal-wa').href = `https://wa.me/917449166916?text=Enquiry%20for%20${encodeURIComponent(p.title)}`;
       document.getElementById('product-modal').classList.remove('hidden');
     }
-    function closeProductModal() {
-      document.getElementById('product-modal').classList.add('hidden');
-    }
+    function closeProductModal() { document.getElementById('product-modal').classList.add('hidden'); }
 
-    // Admin Add Jewellery Handler
+    function openLightbox(img, title, cat) {
+      document.getElementById('lightbox-img').src = img;
+      document.getElementById('lightbox-title').innerText = title;
+      document.getElementById('lightbox-cat').innerText = cat;
+      document.getElementById('lightbox-modal').classList.remove('hidden');
+    }
+    function closeLightbox() { document.getElementById('lightbox-modal').classList.add('hidden'); }
+
+    // Admin Upload Logic
     function handleAdminUpload(e) {
       e.preventDefault();
-      const newProduct = {
+      const newP = {
         id: Date.now().toString(),
         title: document.getElementById('admin-title').value,
         titleTa: document.getElementById('admin-title-ta').value,
@@ -849,10 +1103,11 @@
         desc: document.getElementById('admin-desc').value
       };
 
-      products.unshift(newProduct);
+      products.unshift(newP);
       renderProducts();
+      filterGallery('All');
       closeAdminModal();
-      alert('✓ Success! New jewellery item published to live catalogue.');
+      alert('✓ Success! New item added live to your catalogue mockup.');
       document.getElementById('featured-section').scrollIntoView({ behavior: 'smooth' });
     }
 
@@ -862,8 +1117,9 @@
       closeCustomModal();
     }
 
-    // Initial Load
+    // Initial Execution
     renderProducts();
+    filterGallery('All');
   </script>
 </body>
 </html>
